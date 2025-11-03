@@ -33,11 +33,6 @@ jobs:
         
         # Исправляем ссылки прямо в папке с версией
         find _site/${{ github.event.release.tag_name }} -name "*.html" -exec sed -i "s|/lab4/|/lab4/${{ github.event.release.tag_name }}/|g" {} \;
-        
-        # Копируем основную версию только если её ещё нет
-        if [ ! -f "_site/index.html" ]; then
-          cp -r *.html ru/ en/ _site/
-        fi
 
     # Шаг 3: Публикуем на GitHub Pages
     - name: Deploy to GitHub Pages
