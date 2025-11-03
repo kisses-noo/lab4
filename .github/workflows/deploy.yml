@@ -1,0 +1,35 @@
+# Название пайплайна, будет отображаться в интерфейсе GitHub
+name: Deploy on Release
+
+# События, которые запускают пайплайн
+on:
+  # Запуск при создании нового релиза
+  release:
+    types: [published]
+
+# Задачи, которые выполняются в пайплайне
+jobs:
+  deploy-lab4:
+    # Задача выполняется на последней версии Ubuntu
+    runs-on: ubuntu-latest
+
+    # Шаги, которые выполняются в рамках этой задачи
+    steps:
+    # Шаг 1: Получаем код из репозитория
+    - name: Get code
+      uses: actions/checkout@v4
+
+    # Шаг 2: Подготавливаем файлы для публикации
+    - name: Copy files
+      run: |
+        mkdir _site
+        cp -r *.html ru/ en/ _site/
+
+    # Шаг 3: Публикуем на GitHub Pages
+    - name: Deploy to GitHub Pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./_site
+        publish_branch: gh-pages
+        keep_files: true
