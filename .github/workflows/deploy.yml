@@ -22,7 +22,13 @@ jobs:
     # Шаг 2: Подготавливаем файлы для публикации
     - name: Copy files
       run: |
+        # Создаем папку _site
         mkdir _site
+        # Создаем внутри _site папку с именем релиза (v1.0.0)
+        mkdir -p _site/${{ github.event.release.tag_name }}
+        # Копируем файлы в папку с версией
+        cp -r *.html ru/ en/ _site/${{ github.event.release.tag_name }}/
+        # Также копируем в корень _site для основного сайта
         cp -r *.html ru/ en/ _site/
 
     # Шаг 3: Публикуем на GitHub Pages
