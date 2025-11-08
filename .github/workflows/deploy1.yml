@@ -15,7 +15,7 @@ jobs:
       run:
         mkdir test
         
-        ls | grep no test/
+        ls | grep -d test/
         
         cp -r * test/
 
