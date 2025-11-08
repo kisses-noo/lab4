@@ -1,0 +1,26 @@
+name: CD
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Take a code of a repository
+      uses: actions/checkout@v4
+
+    - name: step2
+      run:
+        mkdir test
+        cp -r . test/
+
+    - name: Path files on gh-pages
+      uses: peaceiris/actions-gh-pages@v4
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+        publish_dir: ./test
+        publish_branch: gh-pages
+        destination_dir: abc
+        
