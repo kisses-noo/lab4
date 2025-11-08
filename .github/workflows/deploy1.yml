@@ -16,7 +16,7 @@ jobs:
 
         mkdir test
         
-        rsync -av --exclude='test' ./ test/
+        cp -r $(ls -I test) test/
 
     - name: Path files on gh-pages
       uses: peaceiris/actions-gh-pages@v4
