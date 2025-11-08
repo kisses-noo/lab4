@@ -13,8 +13,10 @@ jobs:
 
     - name: step2
       run:
+
+        mkdir test
         
-        cp -r | ls | mkdir test
+        cp -r | ls | test
 
     - name: Path files on gh-pages
       uses: peaceiris/actions-gh-pages@v4
