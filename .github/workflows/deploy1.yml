@@ -15,7 +15,7 @@ jobs:
       run:
         mkdir test
         
-        cp -r ls test/
+        cp -r "ls" test/
 
     - name: Path files on gh-pages
       uses: peaceiris/actions-gh-pages@v4
